@@ -42,9 +42,13 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	
+	var Game = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./game.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
+	GameView = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./gameView.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var element = document.getElementById('game-canvas');
+
 
 /***/ }
 /******/ ]);
