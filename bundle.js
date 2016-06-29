@@ -60,11 +60,27 @@
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
+
+	var Ship = __webpack_require__(3),
+	  Planet = __webpack_require__(4),
+	    Goal = __webpack_require__(4);
 
 	class Game {
-	  constructor(){}
+	  constructor(){
+	    this.ship = new Ship;
+	  }
+
+	  step(){
+
+	  }
+
+	  draw(ctx){
+
+	  }
 	}
+
+	module.exports = Game;
 
 
 /***/ },
@@ -76,11 +92,56 @@
 	    this.game = game;
 	    this.ctx = ctx;
 	  }
-	  bind_click() {
-	    // window.addEventListener('click', game.ship.launch());
+
+	  start() {
+	    this.bindClick();
+	    this.interval = this.setInterval(this.loop, 10);
 	  }
-	  start(){}
+
+	  bindClick() {
+	    window.addEventListener('click', this.game.ship.launch());
+	  }
+
+	  loop() {
+	    
+	    this.game.step();
+	    this.game.draw(this.ctx);
+	  }
 	}
+
+	module.exports = GameView;
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	class Ship {
+	  constructor() {
+
+	  }
+	  
+	  launch(){
+
+	  }
+	}
+
+	module.exports = Ship;
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	class Planet {
+	  constructor(options) {
+	    this.density = options.density;
+	    this.radius = options.radius;
+	    this.hue = options.hue;
+	  }
+	}
+
+	module.exports = Planet;
 
 
 /***/ }
