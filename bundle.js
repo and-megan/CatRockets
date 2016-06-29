@@ -44,8 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Game = __webpack_require__(1),
-	GameView = __webpack_require__(2);
+	var Game = __webpack_require__(5),
+	GameView = __webpack_require__(6);
 
 	var element = document.getElementById('game-canvas');
 
@@ -59,24 +59,33 @@
 
 
 /***/ },
-/* 1 */
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Ship = __webpack_require__(3),
-	  Planet = __webpack_require__(4),
-	    Goal = __webpack_require__(4);
+	 var Ship = __webpack_require__(7),
+	   Planet = __webpack_require__(8),
+	     Goal = __webpack_require__(8),
+	Constants = __webpack_require__(9);
 
 	class Game {
 	  constructor(){
-	    this.ship = new Ship;
+	    this.ship = new Ship(
+	      Constants.shipRadius,
+	      Constants.shipStartPos
+	    );
+	    this.level = 1;
 	  }
 
 	  step(){
-
+	    console.log('game step');
 	  }
 
 	  draw(ctx){
-
+	    this.ship.draw(ctx);
 	  }
 	}
 
@@ -84,7 +93,7 @@
 
 
 /***/ },
-/* 2 */
+/* 6 */
 /***/ function(module, exports) {
 
 	class GameView {
@@ -95,7 +104,7 @@
 
 	  start() {
 	    this.bindClick();
-	    this.interval = this.setInterval(this.loop, 10);
+	    this.interval = setInterval(this.loop.bind(this), 10);
 	  }
 
 	  bindClick() {
@@ -113,25 +122,37 @@
 
 
 /***/ },
-/* 3 */
+/* 7 */
 /***/ function(module, exports) {
 
 	class Ship {
 	  // inherit from Planet if we decide to give this gravitational pull (comets trailing?)
-	  constructor() {
-
+	  constructor(radius, pos) {
+	    this.radius = radius;
+	    this.pos = pos;
 	  }
 
 	  launch(){
 
 	  }
+
+	  draw(ctx){
+	    ctx.fillStyle = 'rgb(100,100,100)';
+	    ctx.beginPath();
+	    var [x, y] = this.pos;
+	    ctx.arc(x, y ,this.radius,0,2*Math.PI);
+	    ctx.closePath();
+	    ctx.fill();
+	  }
+
 	}
 
-	module.exports = Ship;
+	module.exports = window.Ship = Ship;
+	// TODO: take off window
 
 
 /***/ },
-/* 4 */
+/* 8 */
 /***/ function(module, exports) {
 
 	class Planet {
@@ -142,7 +163,20 @@
 	  }
 	}
 
-	module.exports = Planet;
+	module.exports = window.Planet = Planet;
+	// TODO: take off window
+
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	var Constants = {
+	  shipRadius: 20,
+	  shipStartPos: [50,550]
+	};
+
+	module.exports = Constants;
 
 
 /***/ }
