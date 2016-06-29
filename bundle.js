@@ -44,8 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Game = __webpack_require__(5),
-	GameView = __webpack_require__(6);
+	var Game = __webpack_require__(1),
+	GameView = __webpack_require__(2);
 
 	var element = document.getElementById('game-canvas');
 
@@ -59,20 +59,29 @@
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */
+/* 1 */
 /***/ function(module, exports) {
 
-	
+	class Game {
+	  constructor(){}
+	}
+
 
 /***/ },
-/* 6 */
+/* 2 */
 /***/ function(module, exports) {
 
-	
+	class GameView {
+	  constructor(game, ctx) {
+	    this.game = game;
+	    this.ctx = ctx;
+	  }
+	  bind_click() {
+	    // window.addEventListener('click', game.ship.launch());
+	  }
+	  start(){}
+	}
+
 
 /***/ }
 /******/ ]);
