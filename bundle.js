@@ -64,15 +64,57 @@
 /* 3 */,
 /* 4 */,
 /* 5 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	
+	var Ship = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./ship.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
+	  Planet = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./planet.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
+	    Goal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./planet.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	class Game {
+	  constructor(){
+	    this.ship = new Ship;
+	  }
+
+	  step(){
+
+	  }
+
+	  draw(ctx){
+
+	  }
+	}
+
+	module.exports = Game;
+
 
 /***/ },
 /* 6 */
 /***/ function(module, exports) {
 
-	
+	class GameView {
+	  constructor(game, ctx) {
+	    this.game = game;
+	    this.ctx = ctx;
+	  }
+
+	  start() {
+	    this.bindClick();
+	    this.interval = this.setInterval(this.loop, 10);
+	  }
+
+	  bindClick() {
+	    window.addEventListener('click', this.game.ship.launch());
+	  }
+
+	  loop() {
+	    
+	    this.game.step();
+	    this.game.draw(this.ctx);
+	  }
+	}
+
+	module.exports = GameView;
+
 
 /***/ }
 /******/ ]);
