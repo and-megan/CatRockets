@@ -74,6 +74,10 @@
 	    return new Space(level);
 	  }
 	
+	  launch() {
+	    this.space.launch();
+	  }
+	
 	  step() {
 	    console.log('game step'); //just for testing
 	  }
@@ -138,7 +142,7 @@
 	  }
 	
 	  bindClick() {
-	    window.addEventListener('click', this.game.ship.launch());
+	    window.addEventListener('click', this.game.launch());
 	  }
 	
 	  loop() {
@@ -171,6 +175,10 @@
 	    );
 	    this.planets = this.bigBang(level);
 	    this.goal = this.cleanLitterBox(level);
+	  }
+	
+	  launch() {
+	    this.ship.launch();
 	  }
 	
 	  bigBang(level) {
