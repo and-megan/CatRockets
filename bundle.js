@@ -87,37 +87,7 @@
 
 
 /***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	class Ship {
-	  // inherit from Planet? will require a gravitational pull
-	  //this will require a mass to calculate gravitational pull
-	  constructor(radius, pos) {
-	    this.radius = radius;
-	    this.pos = pos;
-	  }
-	
-	  launch(){
-	
-	  }
-	
-	  draw(ctx){
-	    ctx.fillStyle = 'rgb(100,100,100)';
-	    ctx.beginPath();
-	    var [x, y] = this.pos;
-	    ctx.arc(x, y ,this.radius,0,2*Math.PI);
-	    ctx.closePath();
-	    ctx.fill();
-	  }
-	
-	}
-	
-	module.exports = window.Ship = Ship;
-	// TODO: take off window
-
-
-/***/ },
+/* 2 */,
 /* 3 */
 /***/ function(module, exports) {
 
@@ -185,9 +155,10 @@
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Ship = __webpack_require__(2),
+	var Ship = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./ship.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
 	  Planet = __webpack_require__(3),
 	    Goal = __webpack_require__(3),
+	    Util = __webpack_require__(7),
 	CONSTANTS = __webpack_require__(4);
 	
 	class Space {
@@ -231,7 +202,17 @@
 	    this.ship.draw(ctx);
 	  }
 	
-	  gravitational_force(obj_1, obj_2){
+	}
+	
+	module.exports = Space;
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	Util = {
+	    gravitational_force(obj_1, obj_2){
 	    //this needs to be calculated for every single object and then the difference will be used to determine how much the objects will shift
 	
 	    //return Force of Attraction (N) between two objects with Universal Gravitation Equation: F = GMm/R2
@@ -241,17 +222,16 @@
 	    mass_1 = obj_1.mass;
 	    mass_2 = obj_2.mass;
 	    (grav_constant * mass_1 * mass_2) / (Math.pow(separation, 2));
-	  }
+	  },
 	
 	  calculate_distance(pos_1, pos_2) {
 	    x_diff = pos_2[0] - pos_1[0];
 	    y_diff = pos_2[1] - pos_2[1];
 	    Math.sqrt(Math.pow(x_diff, 2) + Math.pow(y_diff, 2));
 	  }
+	};
 	
-	}
-	
-	module.exports = Space;
+	module.exports = Util;
 
 
 /***/ }
