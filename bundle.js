@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Game = __webpack_require__(1),
-	GameView = __webpack_require__(5);
+	GameView = __webpack_require__(6);
 	
 	var element = document.getElementById('game-canvas');
 	
@@ -62,10 +62,10 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	 var Ship = __webpack_require__(2),
-	   Planet = __webpack_require__(3),
-	     Goal = __webpack_require__(3),
-	Constants = __webpack_require__(4);
+	 var Ship = __webpack_require__(3),
+	   Planet = __webpack_require__(4),
+	     Goal = __webpack_require__(4),
+	Constants = __webpack_require__(5);
 	
 	class Game {
 	  constructor(){
@@ -89,7 +89,8 @@
 
 
 /***/ },
-/* 2 */
+/* 2 */,
+/* 3 */
 /***/ function(module, exports) {
 
 	class Ship {
@@ -119,7 +120,7 @@
 
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports) {
 
 	class Planet {
@@ -136,7 +137,7 @@
 
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports) {
 
 	var Constants = {
@@ -148,7 +149,7 @@
 
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	class GameView {
