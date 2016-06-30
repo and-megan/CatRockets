@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Game = __webpack_require__(1),
-	GameView = __webpack_require__(6);
+	GameView = __webpack_require__(5);
 	
 	var element = document.getElementById('game-canvas');
 	
@@ -62,7 +62,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Space = __webpack_require__(2);
+	var Space = __webpack_require__(6);
 	
 	class Game {
 	  constructor() {
@@ -88,12 +88,86 @@
 
 /***/ },
 /* 2 */
+/***/ function(module, exports) {
+
+	class Ship {
+	  // inherit from Planet if we decide to give this gravitational pull (comets trailing?)
+	  constructor(radius, pos) {
+	    this.radius = radius;
+	    this.pos = pos;
+	  }
+	
+	  launch(){
+	
+	  }
+	
+	  draw(ctx){
+	    ctx.fillStyle = 'rgb(100,100,100)';
+	    ctx.beginPath();
+	    var [x, y] = this.pos;
+	    ctx.arc(x, y ,this.radius,0,2*Math.PI);
+	    ctx.closePath();
+	    ctx.fill();
+	  }
+	
+	}
+	
+	module.exports = window.Ship = Ship;
+	// TODO: take off window
+
+
+/***/ },
+/* 3 */,
+/* 4 */
+/***/ function(module, exports) {
+
+	var Constants = {
+	  shipRadius: 20,
+	  shipStartPos: [ 50, 550 ],
+	
+	  levelOnePlanet: [ 300, 300 ]
+	};
+	
+	module.exports = Constants;
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	class GameView {
+	  constructor(game, ctx) {
+	    this.game = game;
+	    this.ctx = ctx;
+	  }
+	
+	  start() {
+	    this.bindClick();
+	    this.interval = setInterval(this.loop.bind(this), 10);
+	  }
+	
+	  bindClick() {
+	    window.addEventListener('click', this.game.ship.launch());
+	  }
+	
+	  loop() {
+	
+	    this.game.step();
+	    this.game.draw(this.ctx);
+	  }
+	}
+	
+	module.exports = GameView;
+
+
+/***/ },
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Ship = __webpack_require__(3),
-	  Planet = __webpack_require__(4),
-	    Goal = __webpack_require__(4),
-	CONSTANTS = __webpack_require__(5);
+	var Ship = __webpack_require__(2),
+	  Planet = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./planet.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
+	    Goal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./planet.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
+	CONSTANTS = __webpack_require__(4);
 	
 	class Space {
 	  constructor(level) {
@@ -133,96 +207,6 @@
 	}
 	
 	module.exports = Space;
-
-
-/***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	class Ship {
-	  // inherit from Planet if we decide to give this gravitational pull (comets trailing?)
-	  constructor(radius, pos) {
-	    this.radius = radius;
-	    this.pos = pos;
-	  }
-	
-	  launch(){
-	
-	  }
-	
-	  draw(ctx){
-	    ctx.fillStyle = 'rgb(100,100,100)';
-	    ctx.beginPath();
-	    var [x, y] = this.pos;
-	    ctx.arc(x, y ,this.radius,0,2*Math.PI);
-	    ctx.closePath();
-	    ctx.fill();
-	  }
-	
-	}
-	
-	module.exports = window.Ship = Ship;
-	// TODO: take off window
-
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	class Planet {
-	  constructor(options) {
-	    this.density = options.density;
-	    this.radius = options.radius;
-	    this.hue = options.hue;
-	    this.pos = options.pos;
-	  }
-	}
-	
-	module.exports = window.Planet = Planet;
-	// TODO: take off window
-
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	var Constants = {
-	  shipRadius: 20,
-	  shipStartPos: [ 50, 550 ],
-	
-	  levelOnePlanet: [ 300, 300 ]
-	};
-	
-	module.exports = Constants;
-
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
-	class GameView {
-	  constructor(game, ctx) {
-	    this.game = game;
-	    this.ctx = ctx;
-	  }
-	
-	  start() {
-	    this.bindClick();
-	    this.interval = setInterval(this.loop.bind(this), 10);
-	  }
-	
-	  bindClick() {
-	    window.addEventListener('click', this.game.ship.launch());
-	  }
-	
-	  loop() {
-	
-	    this.game.step();
-	    this.game.draw(this.ctx);
-	  }
-	}
-	
-	module.exports = GameView;
 
 
 /***/ }
