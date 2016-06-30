@@ -91,7 +91,39 @@
 
 
 /***/ },
-/* 2 */,
+/* 2 */
+/***/ function(module, exports) {
+
+	class Ship {
+	  // inherit from Planet? will require a gravitational pull
+	  //this will require a mass to calculate gravitational pull
+	  constructor(radius, pos) {
+	    this.radius = radius;
+	    this.pos = pos;
+	  }
+	
+	  launch(){
+	
+	  }
+	
+	  draw(ctx){
+	    ctx.fillStyle = 'rgb(100,100,100)';
+	    ctx.beginPath();
+	    var [x, y] = this.pos;
+	    ctx.arc(x, y ,this.radius,0,2*Math.PI);
+	    ctx.closePath();
+	    ctx.fill();
+	  }
+	
+	  isCollided(){}
+	
+	}
+	
+	module.exports = window.Ship = Ship;
+	// TODO: take off window
+
+
+/***/ },
 /* 3 */
 /***/ function(module, exports) {
 
@@ -159,7 +191,7 @@
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Ship = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./ship.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
+	var Ship = __webpack_require__(2),
 	  Planet = __webpack_require__(3),
 	    Goal = __webpack_require__(3),
 	    Util = __webpack_require__(7),
