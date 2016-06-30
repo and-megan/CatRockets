@@ -63,8 +63,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	 var Ship = __webpack_require__(2),
-	   Planet = __webpack_require__(3),
-	     Goal = __webpack_require__(3),
+	   Planet = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./planet.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
+	     Goal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./planet.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
 	Constants = __webpack_require__(4);
 	
 	class Game {
@@ -119,23 +119,7 @@
 
 
 /***/ },
-/* 3 */
-/***/ function(module, exports) {
-
-	class Planet {
-	  constructor(options) {
-	    this.density = options.density;
-	    this.radius = options.radius;
-	    this.hue = options.hue;
-	    this.pos = options.pos
-	  }
-	}
-	
-	module.exports = window.Planet = Planet;
-	// TODO: take off window
-
-
-/***/ },
+/* 3 */,
 /* 4 */
 /***/ function(module, exports) {
 
