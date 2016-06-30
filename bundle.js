@@ -93,7 +93,8 @@
 /***/ function(module, exports) {
 
 	class Ship {
-	  // inherit from Planet if we decide to give this gravitational pull (comets trailing?)
+	  // inherit from Planet? will require a gravitational pull
+	  //this will require a mass to calculate gravitational pull
 	  constructor(radius, pos) {
 	    this.radius = radius;
 	    this.pos = pos;
