@@ -62,7 +62,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Space = __webpack_require__(6);
+	var Space = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./space.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	class Game {
 	  constructor() {
@@ -87,52 +87,9 @@
 
 
 /***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	class Ship {
-	  // inherit from Planet? will require a gravitational pull
-	  //this will require a mass to calculate gravitational pull
-	  constructor(radius, pos) {
-	    this.radius = radius;
-	    this.pos = pos;
-	  }
-	
-	  launch(){
-	
-	  }
-	
-	  draw(ctx){
-	    ctx.fillStyle = 'rgb(100,100,100)';
-	    ctx.beginPath();
-	    var [x, y] = this.pos;
-	    ctx.arc(x, y ,this.radius,0,2*Math.PI);
-	    ctx.closePath();
-	    ctx.fill();
-	  }
-	
-	}
-	
-	module.exports = window.Ship = Ship;
-	// TODO: take off window
-
-
-/***/ },
+/* 2 */,
 /* 3 */,
-/* 4 */
-/***/ function(module, exports) {
-
-	var Constants = {
-	  shipRadius: 20,
-	  shipStartPos: [ 50, 550 ],
-	
-	  levelOnePlanet: [ 300, 300 ]
-	};
-	
-	module.exports = Constants;
-
-
-/***/ },
+/* 4 */,
 /* 5 */
 /***/ function(module, exports) {
 
@@ -159,55 +116,6 @@
 	}
 	
 	module.exports = GameView;
-
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var Ship = __webpack_require__(2),
-	  Planet = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./planet.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	    Goal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./planet.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
-	CONSTANTS = __webpack_require__(4);
-	
-	class Space {
-	  constructor(level) {
-	    this.level = level;
-	
-	    this.ship = new Ship(
-	      CONSTANTS.shipRadius,
-	      CONSTANTS.shipStartPos
-	    );
-	    this.planets = this.bigBang(level);
-	    this.goal = this.cleanLitterBox(level);
-	  }
-	
-	  bigBang(level) {
-	    var planets = [];
-	    switch (level) {
-	      case 1:
-	        planets.push(
-	          new Planet({
-	            density: 0,
-	            radius: 0,
-	            hue: 0,
-	            pos: CONSTANTS.levelOnePlanet
-	          })
-	        );
-	        break;
-	    }
-	  }
-	
-	  cleanLitterBox(level) {
-	    return new Goal;
-	  }
-	
-	  draw(ctx) {
-	    this.ship.draw(ctx);
-	  }
-	}
-	
-	module.exports = Space;
 
 
 /***/ }
