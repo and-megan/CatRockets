@@ -219,7 +219,12 @@
 	  }
 	
 	  cleanLitterBox(level) {
-	    return new Goal;
+	    return new Goal({
+	      density: 0,
+	      radius: 0,
+	      hue: 0,
+	      pos: CONSTANTS.levelOnePlanet
+	    });
 	  }
 	
 	  draw(ctx) {
