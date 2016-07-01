@@ -1,8 +1,6 @@
 ### ToDoList
 
-#### There might be different ways of doing these things but this is what I imagine - any feedback and correction is encouraged, I consider Megan to be authority on this project as it was all her idea
-
-#### Also none of this is in any kind of order
+## none of this is in any kind of order
 
 - [ ] define collision checks in Planet, Goal, Ship
   * decide were to define checks (on Planets? on Ship?)
