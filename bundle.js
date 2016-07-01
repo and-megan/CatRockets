@@ -94,7 +94,7 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Ship = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./ship.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())),
+	var Ship = __webpack_require__(3),
 	  Planet = __webpack_require__(4),
 	    Goal = __webpack_require__(4),
 	    Util = __webpack_require__(5),
@@ -156,7 +156,44 @@
 
 
 /***/ },
-/* 3 */,
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Util = __webpack_require__(5);
+	
+	class Ship {
+	  // inherit from Planet? will require a gravitational pull
+	  //this will require a mass to calculate gravitational pull
+	  constructor(radius, pos) {
+	    this.radius = radius;
+	    this.pos = pos;
+	  }
+	
+	  launch(){
+	
+	  }
+	
+	  draw(ctx){
+	    ctx.fillStyle = 'rgb(100,100,100)';
+	    ctx.beginPath();
+	    var [x, y] = this.pos;
+	    ctx.arc(x, y ,this.radius,0,2*Math.PI);
+	    ctx.closePath();
+	    ctx.fill();
+	  }
+	
+	  isCollided(obj){
+	    var dist = Util.calculate_distance(this.pos, obj.pos);
+	    //is dist less than or equal to the sum of the two radii
+	    return dist <= (this.radius + obj.radius);
+	  }
+	}
+	
+	module.exports = window.Ship = Ship;
+	// TODO: take off window
+
+
+/***/ },
 /* 4 */
 /***/ function(module, exports) {
 
