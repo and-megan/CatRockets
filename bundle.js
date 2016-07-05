@@ -78,6 +78,9 @@
 	    this.space.launch();
 	  }
 	
+	  movePointer(event) {
+	  }
+	
 	  step() {
 	
 	// needs a check for last level victory - game won't end until you're dead at this point
@@ -320,12 +323,13 @@
 	  }
 	
 	  start() {
-	    this.bindClick();
+	    this.bindInputs();
 	    this.interval = setInterval(this.loop.bind(this), 10);
 	  }
 	
-	  bindClick() {
-	    window.addEventListener('click', this.game.launch());
+	  bindInputs() {
+	    window.addEventListener('click', this.game.launch);
+	    window.addEventListener('mousemove', this.game.movePointer);
 	  }
 	
 	  loop() {
