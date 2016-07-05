@@ -74,6 +74,10 @@
 	    this.space = new Space(level);
 	  }
 	
+	  launch() {
+	
+	  }
+	
 	  step() {
 	
 	// needs a check for last level victory - game won't end until you're dead at this point
@@ -190,7 +194,8 @@
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Util = __webpack_require__(4);
+	var Util = __webpack_require__(4),
+	Constants = __webpack_require__(5);
 	
 	class Ship {
 	  // inherit from Planet? will require a gravitational pull
@@ -198,6 +203,7 @@
 	  constructor(radius, pos) {
 	    this.radius = radius;
 	    this.pos = pos;
+	    this.mass = Constants.shipMass;
 	  }
 	
 	  launch() {
@@ -251,7 +257,7 @@
 	    return (gravConstant * mass1 * mass2) / (Math.pow(separation, 2));
 	  },
 	
-	  calculate_distance(pos1, pos2) {
+	  calculateDistance(pos1, pos2) {
 	    var xDiff = pos2[0] - pos1[0];
 	    var yDiff = pos2[1] - pos1[1];
 	    return (Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2)));
@@ -268,6 +274,7 @@
 	var Constants = {
 	  shipRadius: 20,
 	  shipStartPos: [ 50, 550 ],
+	  shipMass: 1,
 	
 	  levelOnePlanet: [ 300, 300 ],
 	  levelOneGoal: [ 550, 50 ]
