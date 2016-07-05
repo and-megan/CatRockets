@@ -75,7 +75,7 @@
 	  }
 	
 	  launch() {
-	    this.space.launch();
+	
 	  }
 	
 	  step() {
@@ -111,10 +111,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var Ship = __webpack_require__(3),
-	  Planet = __webpack_require__(5),
-	    Goal = __webpack_require__(5),
+	  Planet = __webpack_require__(6),
+	    Goal = __webpack_require__(6),
 	    Util = __webpack_require__(4),
-	CONSTANTS = __webpack_require__(6);
+	CONSTANTS = __webpack_require__(5);
 	
 	class Space {
 	  constructor(level) {
@@ -194,7 +194,8 @@
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Util = __webpack_require__(4);
+	var Util = __webpack_require__(4),
+	Constants = __webpack_require__(5);
 	
 	class Ship {
 	  // inherit from Planet? will require a gravitational pull
@@ -202,6 +203,7 @@
 	  constructor(radius, pos) {
 	    this.radius = radius;
 	    this.pos = pos;
+	    this.mass = Constants.shipMass;
 	  }
 	
 	  launch() {
@@ -231,6 +233,7 @@
 	  victoryDance() {
 	    console.log("level complete"); //testing purposes
 	  }
+	
 	}
 	
 	module.exports = window.Ship = Ship;
@@ -242,22 +245,22 @@
 /***/ function(module, exports) {
 
 	Util = {
-	    gravitational_force(obj_1, obj_2){
+	    gravitationalForce(obj1, obj2){
 	    //this needs to be calculated for every single object and then the difference will be used to determine how much the objects will shift
 	
 	    //return Force of Attraction (N) between two objects with Universal Gravitation Equation: F = GMm/R2
 	
-	    grav_constant = 6.674 * Math.pow(10, -11);
-	    separation = this.calculate_distance(obj_1.pos, obj_2.pos);
-	    mass_1 = obj_1.mass;
-	    mass_2 = obj_2.mass;
-	    (grav_constant * mass_1 * mass_2) / (Math.pow(separation, 2));
+	    var gravConstant = 6.674 * Math.pow(10, -11);
+	    var separation = this.calculateDistance(obj1.pos, obj2.pos);
+	    var mass1 = obj1.mass;
+	    var mass2 = obj2.mass;
+	    return (gravConstant * mass1 * mass2) / (Math.pow(separation, 2));
 	  },
 	
-	  calculate_distance(pos_1, pos_2) {
-	    x_diff = pos_2[0] - pos_1[0];
-	    y_diff = pos_2[1] - pos_2[1];
-	    Math.sqrt(Math.pow(x_diff, 2) + Math.pow(y_diff, 2));
+	  calculateDistance(pos1, pos2) {
+	    var xDiff = pos2[0] - pos1[0];
+	    var yDiff = pos2[1] - pos1[1];
+	    return (Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2)));
 	  }
 	};
 	
@@ -266,6 +269,22 @@
 
 /***/ },
 /* 5 */
+/***/ function(module, exports) {
+
+	var Constants = {
+	  shipRadius: 20,
+	  shipStartPos: [ 50, 550 ],
+	  shipMass: 1,
+	
+	  levelOnePlanet: [ 300, 300 ],
+	  levelOneGoal: [ 550, 50 ]
+	};
+	
+	module.exports = Constants;
+
+
+/***/ },
+/* 6 */
 /***/ function(module, exports) {
 
 	class Planet {
@@ -292,21 +311,6 @@
 	
 	module.exports = window.Planet = Planet;
 	// TODO: take off window
-
-
-/***/ },
-/* 6 */
-/***/ function(module, exports) {
-
-	var Constants = {
-	  shipRadius: 20,
-	  shipStartPos: [ 50, 550 ],
-	
-	  levelOnePlanet: [ 300, 300 ],
-	  levelOneGoal: [ 550, 50 ]
-	};
-	
-	module.exports = Constants;
 
 
 /***/ },
