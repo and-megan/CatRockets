@@ -187,6 +187,11 @@
 	    //is dist less than or equal to the sum of the two radii
 	    return dist <= (this.radius + obj.radius);
 	  }
+	
+	  charlieIsWayBetterThanMeganAtEverything(){
+	    return false;
+	  }
+	
 	}
 	
 	module.exports = window.Ship = Ship;
