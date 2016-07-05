@@ -2,7 +2,7 @@
 
 ### none of this is in any kind of order
 
-- [ ] define collision checks in Planet, Goal, Ship
+- [X] define collision checks in Planet, Goal, Ship
   * decide were to define checks (on Planets? on Ship?)
   * write #isCollided?(){} or some such thing
   * add collision detection methods to Space
